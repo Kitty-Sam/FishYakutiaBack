@@ -22,4 +22,27 @@ model Food {
   price String
   categoryId Int
   category   Category @relation(fields: [categoryId], references: [id])
+
+  orders     OrderFood[]
+}
+
+
+model Order {
+   id           Int          @default(autoincrement()) @id
+   userName     String
+   userPhone    String
+   userAddress  String
+   totalAmount  String
+
+   foods        OrderFood[]
+}
+
+model OrderFood {
+  id         Int    @default(autoincrement()) @id
+  orderId    Int
+  foodId     Int
+  foodCount  Int
+
+  food       Food   @relation(fields: [foodId], references: [id])
+  order      Order  @relation(fields: [orderId], references: [id])
 }
