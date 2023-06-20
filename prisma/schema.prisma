@@ -29,6 +29,7 @@ model Food {
 
 model Order {
    id           Int          @default(autoincrement()) @id
+   createdAt    DateTime @default(now())
    userName     String
    userPhone    String
    userAddress  String

@@ -7,7 +7,7 @@ import { CreateOrderDto } from './dto/create-order-dto';
 export class OrderController {
   constructor(private readonly orderService: OrderService) {}
 
-  @Post('/order')
+  @Post('/create-order')
   async createOrder(@Body() orderDto: CreateOrderDto): Promise<Order> {
     return this.orderService.createOrder(orderDto);
   }
