@@ -2,6 +2,29 @@ import { PrismaClient } from '@prisma/client';
 const prisma = new PrismaClient();
 
 const categories = ['Категория 1', 'Категория 2', 'Категория 3'];
+const foods = [
+  {
+    image:
+      'https://thebigmansworld.com/wp-content/uploads/2023/04/pan-seared-salmon-recipe.jpg',
+    name: 'Salmon',
+    price: '300',
+    categoryId: 1,
+  },
+  {
+    image:
+      'https://thebigmansworld.com/wp-content/uploads/2023/04/pan-seared-salmon-recipe.jpg',
+    name: 'Salmon2',
+    price: '400',
+    categoryId: 2,
+  },
+  {
+    image:
+      'https://thebigmansworld.com/wp-content/uploads/2023/04/pan-seared-salmon-recipe.jpg',
+    name: 'Salmon3',
+    price: '500',
+    categoryId: 2,
+  },
+];
 
 const settings = [
   {
@@ -11,6 +34,13 @@ const settings = [
     description:
       'Магазин вкуснейшей рыбы в городе! Быстро доставим к Вам домой Санкт-Петербург, Ладожская улица, дом 1 +7 812 777 77 77 info@fishka.ru',
     email: 'info@fishka.ru',
+  },
+];
+
+const users = [
+  {
+    email: 'user@gmail.com',
+    password: '$2a$12$NNtUqgZeWswI6nK5fuWv7eIUgGHPViL/x9ryObkPL.POUFLVwSYFa',
   },
 ];
 
@@ -34,5 +64,19 @@ function seedSettings() {
     .catch((e) => console.error('[SEED] Failed to create settings records', e));
 }
 
+function seedUsers() {
+  Promise.all(users.map((user) => prisma.users.create({ data: user })))
+    .then(() => console.info('[SEED] Successfully create users records'))
+    .catch((e) => console.error('[SEED] Failed to create users records', e));
+}
+
+function seedFoods() {
+  Promise.all(foods.map((food) => prisma.food.create({ data: food })))
+    .then(() => console.info('[SEED] Successfully create foods records'))
+    .catch((e) => console.error('[SEED] Failed to create foods records', e));
+}
+
 seedCategories();
 seedSettings();
+seedUsers();
+seedFoods();
