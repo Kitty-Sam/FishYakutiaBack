@@ -38,6 +38,10 @@ model Order {
    userName     String
    userPhone    String
    userAddress  String
+   paymentMethod String
+   comment String
+
+
    totalAmount  String
 
    foods        OrderFood[]

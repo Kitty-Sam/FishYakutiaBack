@@ -20,14 +20,23 @@ export class OrderService {
   }
 
   async createOrder(orderDto: CreateOrderDto): Promise<Order> {
-    const { userPhone, userAddress, userName, orderItems, totalAmount } =
-      orderDto;
+    const {
+      userPhone,
+      userAddress,
+      userName,
+      orderItems,
+      totalAmount,
+      paymentMethod,
+      comment,
+    } = orderDto;
 
     const order: Prisma.OrderCreateInput = {
       userName,
       userPhone,
       userAddress,
       totalAmount,
+      paymentMethod,
+      comment,
       foods: {
         create: orderItems.map((item) => ({
           food: { connect: { id: item.foodId } },
