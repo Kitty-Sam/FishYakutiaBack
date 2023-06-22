@@ -52,3 +52,12 @@ model OrderFood {
   food       Food   @relation(fields: [foodId], references: [id])
   order      Order  @relation(fields: [orderId], references: [id])
 }
+
+
+model Settings {
+ id           Int          @default(autoincrement()) @id
+ badge  String
+ delivery  String
+ description  String
+ email  String
+}
