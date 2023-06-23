@@ -13,7 +13,7 @@ export class OrderController {
   }
 
   @Get('/orders')
-  async getAllOrders(): Promise<Order[]> {
+  async getAllOrders(): Promise<{ [key: string]: Order[] }[]> {
     return this.orderService.getAllOrders();
   }
 }
