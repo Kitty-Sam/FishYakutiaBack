@@ -1,4 +1,11 @@
-import { Body, Controller, Get, Post } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Get,
+  ParseIntPipe,
+  Post,
+  Query,
+} from '@nestjs/common';
 import { OrderService } from './order.service';
 import { Order } from '@prisma/client';
 import { CreateOrderDto } from './dto/create-order-dto';
@@ -13,7 +20,16 @@ export class OrderController {
   }
 
   @Get('/orders')
-  async getAllOrders(): Promise<{ [key: string]: Order[] }[]> {
-    return this.orderService.getAllOrders();
+  async getAllOrders(@Query('page', ParseIntPipe) page: number): Promise<{
+    orders: {
+      [key: string]: Order[];
+    }[];
+    totalOrders: number;
+  }> {
+    const { orders, totalOrders } = await this.orderService.getAllOrders(page);
+    return {
+      orders,
+      totalOrders,
+    };
   }
 }

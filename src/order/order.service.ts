@@ -7,8 +7,17 @@ import { CreateOrderDto } from './dto/create-order-dto';
 export class OrderService {
   constructor(private prisma: PrismaService) {}
 
-  async getAllOrders(): Promise<{ [key: string]: Order[] }[]> {
+  async getAllOrders(page: number): Promise<{
+    orders: {
+      [key: string]: Order[];
+    }[];
+    totalOrders: number;
+  }> {
+    const pageSize = 50;
+    const skip = (page - 1) * pageSize;
     const orders = await this.prisma.order.findMany({
+      skip: skip,
+      take: pageSize,
       include: {
         foods: {
           include: {
@@ -18,7 +27,10 @@ export class OrderService {
       },
     });
 
-    return orders.reduce((acc, order) => {
+    const totalOrders = await this.prisma.order.count();
+    const totalOrdersPages = Math.ceil(totalOrders / pageSize);
+
+    const groupedOrders = orders.reduce((acc, order) => {
       const createdAt = order.createdAt.toISOString().slice(0, 10);
       const existingOrder = acc.find((o) => Object.keys(o)[0] === createdAt);
 
@@ -30,6 +42,11 @@ export class OrderService {
 
       return acc;
     }, []);
+
+    return {
+      orders: groupedOrders,
+      totalOrders: totalOrdersPages,
+    };
   }
 
   async createOrder(orderDto: CreateOrderDto): Promise<Order> {
