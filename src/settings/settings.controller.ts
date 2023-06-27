@@ -1,4 +1,4 @@
-import { Body, Controller, Put } from '@nestjs/common';
+import { Body, Controller, Get, Put } from '@nestjs/common';
 import { SettingsService } from './settings.service';
 import { Settings } from '@prisma/client';
 import { UpdateSettingsDto } from './dto/update-settings-dto';
@@ -6,6 +6,11 @@ import { UpdateSettingsDto } from './dto/update-settings-dto';
 @Controller('')
 export class SettingsController {
   constructor(private readonly settingsService: SettingsService) {}
+
+  @Get('all')
+  async getSettings(): Promise<Settings> {
+    return this.settingsService.settings();
+  }
 
   @Put('badge')
   async updateBadge(@Body() updateBadge: UpdateSettingsDto): Promise<Settings> {
