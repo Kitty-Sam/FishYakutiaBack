@@ -41,4 +41,38 @@ export class FoodService {
       },
     });
   }
+
+  async filterFoodByTitleAndByCategory(params: {
+    title: string;
+    categoryId: number;
+  }): Promise<Food[]> {
+    const { title, categoryId } = params;
+
+    if (title && categoryId) {
+      return this.prisma.food.findMany({
+        where: {
+          name: title,
+          categoryId,
+        },
+      });
+    }
+
+    if (title) {
+      return this.prisma.food.findMany({
+        where: {
+          name: title,
+        },
+      });
+    }
+
+    if (categoryId) {
+      return this.prisma.food.findMany({
+        where: {
+          categoryId,
+        },
+      });
+    }
+
+    return [];
+  }
 }

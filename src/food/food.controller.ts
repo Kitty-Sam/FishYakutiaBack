@@ -35,4 +35,14 @@ export class FoodController {
       title,
     });
   }
+
+  @Post('/foods/filter-by-title-and-by-category')
+  async filterFoodByTitleAndByCategory(
+    @Body() { title, categoryId },
+  ): Promise<Food[]> {
+    return this.foodService.filterFoodByTitleAndByCategory({
+      title,
+      categoryId: Number(categoryId),
+    });
+  }
 }
