@@ -18,14 +18,17 @@ export class FoodService {
     const foods = await this.prisma.food.findMany({
       skip: skip,
       take: pageSize,
+      include: {
+        images: true,
+      },
     });
 
-    const categoryIds = foods.map((food) => food.categoryId);
+    const categoryId = foods.map((food) => food.categoryId);
 
     const categories = await this.prisma.category.findMany({
       where: {
         id: {
-          in: categoryIds,
+          in: categoryId,
         },
       },
     });
@@ -43,10 +46,37 @@ export class FoodService {
     };
   }
 
-  async createFood(foodDto: CreateFoodDto): Promise<Food> {
-    return this.prisma.food.create({
-      data: foodDto,
+  async createFood(foodDto: CreateFoodDto): Promise<FoodWithCategory> {
+    const { name, price, categoryId, image } = foodDto;
+
+    const savedFile = await this.prisma.file.create({
+      data: {
+        filename: image.filename,
+        path: image.path,
+      },
     });
+
+    const category = await this.prisma.category.findFirst({
+      where: {
+        id: Number(categoryId),
+      },
+    });
+
+    const createdFood = await this.prisma.food.create({
+      data: {
+        name,
+        price,
+        categoryId: Number(categoryId),
+        images: {
+          connect: { id: savedFile.id },
+        },
+      },
+      include: {
+        images: true,
+      },
+    });
+
+    return { ...createdFood, category };
   }
 
   async deleteFood(params: { id: number }): Promise<Food> {

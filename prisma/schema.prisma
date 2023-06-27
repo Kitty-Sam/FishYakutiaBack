@@ -19,16 +19,24 @@ model Category {
  foods  Food[]
 }
 
-
 model Food {
   id    Int     @default(autoincrement()) @id
   name  String
-  image  String
+  images      File[]
   price String
   categoryId Int
   category   Category @relation(fields: [categoryId], references: [id])
-
   orders     OrderFood[]
+}
+
+model File {
+  id        Int       @id @default(autoincrement())
+  filename  String
+  path      String    @unique
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  foodId    Int?
+  food      Food?     @relation(fields: [foodId], references: [id])
 }
 
 

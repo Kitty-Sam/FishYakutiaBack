@@ -7,11 +7,15 @@ import {
   ParseIntPipe,
   Post,
   Query,
+  UploadedFile,
+  UseInterceptors,
 } from '@nestjs/common';
 import { FoodService } from './food.service';
 import { Food } from '@prisma/client';
 import { CreateFoodDto } from './dto/create-food-dto';
 import { FoodWithCategory } from '../category/interfaces';
+import { FileInterceptor } from '@nestjs/platform-express';
+import { multerConfig } from './multer.config';
 
 @Controller('')
 export class FoodController {
@@ -25,8 +29,14 @@ export class FoodController {
   }
 
   @Post('/add-food')
-  async createFood(@Body() foodDto: CreateFoodDto): Promise<Food> {
-    return this.foodService.createFood(foodDto);
+  @UseInterceptors(FileInterceptor('image', multerConfig))
+  async createFood(
+    @UploadedFile()
+    image: Express.Multer.File,
+    @Body() createFoodDto: CreateFoodDto,
+  ) {
+    const foodDto = { ...createFoodDto, image };
+    return await this.foodService.createFood(foodDto);
   }
 
   @Delete('food/:id')
