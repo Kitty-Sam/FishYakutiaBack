@@ -1,15 +1,27 @@
-import { Body, Controller, Delete, Get, Param, Post } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Delete,
+  Get,
+  Param,
+  ParseIntPipe,
+  Post,
+  Query,
+} from '@nestjs/common';
 import { FoodService } from './food.service';
 import { Food } from '@prisma/client';
 import { CreateFoodDto } from './dto/create-food-dto';
+import { FoodWithCategory } from '../category/interfaces';
 
 @Controller('')
 export class FoodController {
   constructor(private readonly foodService: FoodService) {}
 
   @Get('/foods')
-  async getAllFoods(): Promise<Food[]> {
-    return this.foodService.foods();
+  async getAllFoods(
+    @Query('page', ParseIntPipe) page: number,
+  ): Promise<{ foods: FoodWithCategory[]; totalFoodsPages: number }> {
+    return this.foodService.foods(page);
   }
 
   @Post('/add-food')
