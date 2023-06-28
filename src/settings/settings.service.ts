@@ -6,6 +6,10 @@ import { Settings } from '@prisma/client';
 export class SettingsService {
   constructor(private prisma: PrismaService) {}
 
+  async settings(): Promise<Settings> {
+    return await this.prisma.settings.findFirst();
+  }
+
   async updateBadge(params: { data: { text: string } }): Promise<Settings> {
     const { data } = params;
     return this.prisma.settings.update({
