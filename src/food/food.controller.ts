@@ -24,8 +24,10 @@ export class FoodController {
   @Get('/foods')
   async getAllFoods(
     @Query('page', ParseIntPipe) page: number,
+    @Query('sortField') sortField: keyof Food,
+    @Query('sortOrder') sortOrder: 'asc' | 'desc' = 'asc',
   ): Promise<{ foods: FoodWithCategory[]; totalFoodsPages: number }> {
-    return this.foodService.foods(page);
+    return this.foodService.foods(page, sortField, sortOrder);
   }
 
   @Post('/add-food')
