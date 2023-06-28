@@ -9,6 +9,8 @@ export class FoodService {
   constructor(private prisma: PrismaService) {}
   async foods(
     page: number,
+    sortField: keyof Food,
+    sortOrder: 'asc' | 'desc',
   ): Promise<{ foods: FoodWithCategory[]; totalFoodsPages: number }> {
     const pageSize = 50;
     const skip = (page - 1) * pageSize;
@@ -18,6 +20,9 @@ export class FoodService {
     const foods = await this.prisma.food.findMany({
       skip: skip,
       take: pageSize,
+      orderBy: {
+        [sortField]: sortOrder,
+      },
       include: {
         images: true,
       },
