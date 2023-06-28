@@ -1,4 +1,4 @@
-import { IsNotEmpty, IsNumber, IsString } from 'class-validator';
+import { IsNotEmpty, IsString } from 'class-validator';
 
 export class CreateFoodDto {
   @IsNotEmpty()
@@ -9,9 +9,8 @@ export class CreateFoodDto {
   @IsString()
   readonly price: string;
 
-  @IsString()
-  readonly image: string;
+  readonly image: Express.Multer.File;
 
-  @IsNumber()
+  @IsNotEmpty()
   readonly categoryId: number;
 }
