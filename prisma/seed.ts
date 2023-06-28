@@ -76,7 +76,7 @@ function seedFoods() {
     .catch((e) => console.error('[SEED] Failed to create foods records', e));
 }
 
-seedCategories();
+// seedCategories();
 seedSettings();
 seedUsers();
-seedFoods();
+// seedFoods();
