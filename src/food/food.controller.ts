@@ -30,6 +30,11 @@ export class FoodController {
     return this.foodService.foods(page, sortField, sortOrder);
   }
 
+  @Get('/foods-mobile')
+  async getFoods(): Promise<Food[]> {
+    return this.foodService.foodsMobile();
+  }
+
   @Post('/add-food')
   @UseInterceptors(FileInterceptor('image', multerConfig))
   async createFood(

@@ -51,6 +51,14 @@ export class FoodService {
     };
   }
 
+  async foodsMobile(): Promise<Food[]> {
+    return await this.prisma.food.findMany({
+      include: {
+        images: true,
+      },
+    });
+  }
+
   async createFood(foodDto: CreateFoodDto): Promise<FoodWithCategory> {
     const { name, price, categoryId, image } = foodDto;
 
@@ -89,6 +97,9 @@ export class FoodService {
       where: {
         id: params.id,
       },
+      include: {
+        images: true,
+      },
     });
   }
 
@@ -98,6 +109,9 @@ export class FoodService {
       where: {
         categoryId,
       },
+      include: {
+        images: true,
+      },
     });
   }
 
@@ -105,7 +119,13 @@ export class FoodService {
     const { title } = params;
     return this.prisma.food.findMany({
       where: {
-        name: title,
+        name: {
+          contains: title,
+          mode: 'insensitive',
+        },
+      },
+      include: {
+        images: true,
       },
     });
   }
@@ -119,8 +139,14 @@ export class FoodService {
     if (title && categoryId) {
       return this.prisma.food.findMany({
         where: {
-          name: title,
+          name: {
+            contains: title,
+            mode: 'insensitive',
+          },
           categoryId,
+        },
+        include: {
+          images: true,
         },
       });
     }
@@ -128,7 +154,13 @@ export class FoodService {
     if (title) {
       return this.prisma.food.findMany({
         where: {
-          name: title,
+          name: {
+            contains: title,
+            mode: 'insensitive',
+          },
+        },
+        include: {
+          images: true,
         },
       });
     }
@@ -137,6 +169,9 @@ export class FoodService {
       return this.prisma.food.findMany({
         where: {
           categoryId,
+        },
+        include: {
+          images: true,
         },
       });
     }
