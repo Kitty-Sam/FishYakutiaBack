@@ -24,6 +24,7 @@ model Food {
   name  String
   images      File[]
   price String
+  isDeleted  Boolean @default(false)
   categoryId Int
   category   Category @relation(fields: [categoryId], references: [id])
   orders     OrderFood[]
