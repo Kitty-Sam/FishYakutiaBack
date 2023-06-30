@@ -3,7 +3,6 @@ import {
   Controller,
   Delete,
   Get,
-  Param,
   ParseIntPipe,
   Post,
   Query,
@@ -46,9 +45,12 @@ export class FoodController {
     return await this.foodService.createFood(foodDto);
   }
 
-  @Delete('food/:id')
-  async deleteFoodById(@Param('id') id: string): Promise<Food> {
-    return this.foodService.deleteFood({ id: Number(id) });
+  @Delete('foods')
+  async deleteFoodById(
+    @Body() deleteFoodsData: { userIds: number[] },
+  ): Promise<number[]> {
+    const { userIds } = deleteFoodsData;
+    return await this.foodService.deleteFood(userIds);
   }
 
   @Post('/foods/filter-by-category-id')

@@ -92,15 +92,27 @@ export class FoodService {
     return { ...createdFood, category };
   }
 
-  async deleteFood(params: { id: number }): Promise<Food> {
-    return this.prisma.food.delete({
-      where: {
-        id: params.id,
-      },
-      include: {
-        images: true,
-      },
-    });
+  async deleteFood(userIds: number[]): Promise<number[]> {
+    const deletedFoodsIdsArray: number[] = [];
+
+    for (const userId of userIds) {
+      const food = await this.prisma.food.findUnique({
+        where: { id: userId },
+      });
+
+      if (food) {
+        const updatedFood = await this.prisma.food.update({
+          where: { id: userId },
+          data: { isDeleted: true },
+          select: {
+            id: true,
+          },
+        });
+        deletedFoodsIdsArray.push(updatedFood.id);
+      }
+    }
+
+    return deletedFoodsIdsArray;
   }
 
   async filterFoodByCategory(params: { categoryId: number }): Promise<Food[]> {
