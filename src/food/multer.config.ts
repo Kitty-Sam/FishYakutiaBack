@@ -17,12 +17,12 @@ export const multerConfig = {
   }),
 
   fileFilter: (req, file, callback) => {
-    const allowedExtensions = ['.jpg', '.jpeg', '.png', '.gif', '.svg', '.bmp'];
+    const allowedExtensions = ['.jpg', '.jpeg'];
 
     const fileExtension = extname(file.originalname).toLowerCase();
 
     if (!allowedExtensions.includes(fileExtension)) {
-      return callback(new Error('Only image files are allowed!'), false);
+      return callback(new Error('Only jpg/jpeg files are allowed!'), false);
     }
     callback(null, true);
   },

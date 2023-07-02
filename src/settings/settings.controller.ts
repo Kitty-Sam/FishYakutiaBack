@@ -1,46 +1,35 @@
-import { Body, Controller, Get, Put } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Get,
+  Patch,
+  UploadedFile,
+  UseInterceptors,
+} from '@nestjs/common';
 import { SettingsService } from './settings.service';
 import { Settings } from '@prisma/client';
-import { UpdateSettingsDto } from './dto/update-settings-dto';
+import { CreateSettingsDto } from './dto/create-settings-dto';
+import { FileInterceptor } from '@nestjs/platform-express';
+import { multerConfig } from '../food/multer.config';
+import { UpdateSettings } from './interfaces';
 
-@Controller('')
+@Controller('settings')
 export class SettingsController {
   constructor(private readonly settingsService: SettingsService) {}
 
-  @Get('all')
+  @Get('')
   async getSettings(): Promise<Settings> {
     return this.settingsService.settings();
   }
 
-  @Put('badge')
-  async updateBadge(@Body() updateBadge: UpdateSettingsDto): Promise<Settings> {
-    return this.settingsService.updateBadge({
-      data: updateBadge,
-    });
-  }
-
-  @Put('description')
-  async updateDescription(
-    @Body() updateDescription: UpdateSettingsDto,
-  ): Promise<Settings> {
-    return this.settingsService.updateDescription({
-      data: updateDescription,
-    });
-  }
-
-  @Put('delivery')
-  async updateDelivery(
-    @Body() updateDelivery: UpdateSettingsDto,
-  ): Promise<Settings> {
-    return this.settingsService.updateDelivery({
-      data: updateDelivery,
-    });
-  }
-
-  @Put('email')
-  async updateEmail(@Body() updateEmail: UpdateSettingsDto): Promise<Settings> {
-    return this.settingsService.updateEmail({
-      data: updateEmail,
-    });
+  @Patch('')
+  @UseInterceptors(FileInterceptor('image', multerConfig))
+  async createFood(
+    @UploadedFile()
+    image: Express.Multer.File,
+    @Body() createSettingsDto: CreateSettingsDto,
+  ) {
+    const settingsDto = { ...createSettingsDto, image } as UpdateSettings;
+    return await this.settingsService.updateSettings(settingsDto);
   }
 }
