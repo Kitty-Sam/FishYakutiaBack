@@ -38,6 +38,8 @@ model File {
   updatedAt DateTime  @updatedAt
   foodId    Int?
   food      Food?     @relation(fields: [foodId], references: [id])
+  settings  Settings?
+  settingsId Int?     @unique
 }
 
 
@@ -69,8 +71,9 @@ model OrderFood {
 
 model Settings {
  id           Int          @default(autoincrement()) @id
- badge  String
- delivery  String
+ image        File?        @relation(fields: [imageId], references: [id])
+ imageId      Int?         @unique
+ delivery     String
  description  String
- email  String
+ email        String
 }

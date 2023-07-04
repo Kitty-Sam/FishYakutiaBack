@@ -1,46 +1,45 @@
 import { Injectable } from '@nestjs/common';
 import { PrismaService } from '../prisma.service';
 import { Settings } from '@prisma/client';
+import { UpdateSettings } from './interfaces';
 
 @Injectable()
 export class SettingsService {
   constructor(private prisma: PrismaService) {}
 
   async settings(): Promise<Settings> {
-    return await this.prisma.settings.findFirst();
-  }
-
-  async updateBadge(params: { data: { text: string } }): Promise<Settings> {
-    const { data } = params;
-    return this.prisma.settings.update({
-      where: { id: 1 },
-      data: { badge: data.text },
+    return await this.prisma.settings.findFirst({
+      include: {
+        image: true,
+      },
     });
   }
 
-  async updateDescription(params: {
-    data: { text: string };
-  }): Promise<Settings> {
-    const { data } = params;
-    return this.prisma.settings.update({
-      where: { id: 1 },
-      data: { description: data.text },
-    });
-  }
+  async updateSettings(settingDto: UpdateSettings): Promise<Settings> {
+    const { image, email, delivery, description, id } = settingDto;
 
-  async updateDelivery(params: { data: { text: string } }): Promise<Settings> {
-    const { data } = params;
-    return this.prisma.settings.update({
-      where: { id: 1 },
-      data: { delivery: data.text },
+    const savedFile = await this.prisma.file.create({
+      data: {
+        filename: image.filename,
+        path: image.path,
+      },
     });
-  }
 
-  async updateEmail(params: { data: { text: string } }): Promise<Settings> {
-    const { data } = params;
-    return this.prisma.settings.update({
-      where: { id: 1 },
-      data: { email: data.text },
+    return await this.prisma.settings.update({
+      where: {
+        id: Number(id),
+      },
+      data: {
+        email,
+        delivery,
+        description,
+        image: {
+          connect: { id: savedFile.id },
+        },
+      },
+      include: {
+        image: true,
+      },
     });
   }
 }
