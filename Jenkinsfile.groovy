@@ -5,7 +5,7 @@ pipeline {
           }
 
     environment {
-        GIT_TOKEN = credentials('GIT_TOKEN')
+        GIT_TOKEN = credentials('TokenSam')
         DOCKERHUB_CREDENTIALS = credentials('kirilljbee_dockerhub')
         NAME_IMAGE = 'kirilljbee/FishYakutiaBack:latest'
     }
