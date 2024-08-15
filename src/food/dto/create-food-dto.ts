@@ -8,8 +8,8 @@ export class CreateFoodDto {
   @IsNotEmpty()
   @IsString()
   readonly price: string;
-
-  readonly image: Express.Multer.File;
+  @IsString()
+  readonly image: string;
 
   @IsNotEmpty()
   readonly categoryId: number;

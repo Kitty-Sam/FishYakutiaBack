@@ -1,7 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { Food } from '@prisma/client';
 import { PrismaService } from '../prisma.service';
-import { CreateFoodDto } from './dto/create-food-dto';
 import { FoodWithCategory } from '../category/interfaces';
 
 @Injectable()
@@ -22,9 +21,6 @@ export class FoodService {
       take: pageSize,
       orderBy: {
         [sortField]: sortOrder,
-      },
-      include: {
-        images: true,
       },
     });
 
@@ -52,44 +48,7 @@ export class FoodService {
   }
 
   async foodsMobile(): Promise<Food[]> {
-    return await this.prisma.food.findMany({
-      include: {
-        images: true,
-      },
-    });
-  }
-
-  async createFood(foodDto: CreateFoodDto): Promise<FoodWithCategory> {
-    const { name, price, categoryId, image } = foodDto;
-
-    const savedFile = await this.prisma.file.create({
-      data: {
-        filename: image.filename,
-        path: image.path,
-      },
-    });
-
-    const category = await this.prisma.category.findFirst({
-      where: {
-        id: Number(categoryId),
-      },
-    });
-
-    const createdFood = await this.prisma.food.create({
-      data: {
-        name,
-        price,
-        categoryId: Number(categoryId),
-        images: {
-          connect: { id: savedFile.id },
-        },
-      },
-      include: {
-        images: true,
-      },
-    });
-
-    return { ...createdFood, category };
+    return this.prisma.food.findMany();
   }
 
   async deleteFood(userIds: number[]): Promise<number[]> {
@@ -121,9 +80,6 @@ export class FoodService {
       where: {
         categoryId,
       },
-      include: {
-        images: true,
-      },
     });
   }
 
@@ -135,9 +91,6 @@ export class FoodService {
           contains: title,
           mode: 'insensitive',
         },
-      },
-      include: {
-        images: true,
       },
     });
   }
@@ -157,9 +110,6 @@ export class FoodService {
           },
           categoryId,
         },
-        include: {
-          images: true,
-        },
       });
     }
 
@@ -171,9 +121,6 @@ export class FoodService {
             mode: 'insensitive',
           },
         },
-        include: {
-          images: true,
-        },
       });
     }
 
@@ -181,9 +128,6 @@ export class FoodService {
       return this.prisma.food.findMany({
         where: {
           categoryId,
-        },
-        include: {
-          images: true,
         },
       });
     }

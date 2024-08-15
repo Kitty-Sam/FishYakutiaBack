@@ -15,14 +15,14 @@ const foods = [
       'https://thebigmansworld.com/wp-content/uploads/2023/04/pan-seared-salmon-recipe.jpg',
     name: 'Salmon2',
     price: '400',
-    categoryId: 2,
+    categoryId: 1,
   },
   {
     image:
       'https://thebigmansworld.com/wp-content/uploads/2023/04/pan-seared-salmon-recipe.jpg',
     name: 'Salmon3',
     price: '500',
-    categoryId: 2,
+    categoryId: 1,
   },
 ];
 
@@ -77,6 +77,6 @@ function seedFoods() {
 }
 
 // seedCategories();
-seedSettings();
-seedUsers();
-// seedFoods();
+// seedSettings();
+// seedUsers();
+seedFoods();
