@@ -22,7 +22,7 @@ model Category {
 model Food {
   id    Int     @default(autoincrement()) @id
   name  String
-  images      File[]
+  image String
   price String
   isDeleted  Boolean @default(false)
   categoryId Int
@@ -36,8 +36,6 @@ model File {
   path      String    @unique
   createdAt DateTime  @default(now())
   updatedAt DateTime  @updatedAt
-  foodId    Int?
-  food      Food?     @relation(fields: [foodId], references: [id])
   settings  Settings?
   settingsId Int?     @unique
 }
