@@ -22,7 +22,7 @@ pipeline {
 
         stage('Build and start backend with db') { 
             steps {
-                 sh 'docker compose up} .'    
+                 sh 'docker compose up'    
              }
          }
 
