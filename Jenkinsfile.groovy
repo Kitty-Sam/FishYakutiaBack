@@ -20,11 +20,11 @@ pipeline {
             }
         }
 
-        // stage('Build image webpage') { 
-        //     steps {
-        //         sh 'docker build -t ${NAME_IMAGE} .'    
-        //     }
-        // }
+        stage('Build and start backend with db') { 
+            steps {
+                 sh 'docker compose up} .'    
+             }
+         }
 
         // stage('Push image webpage') {
         //     steps {
