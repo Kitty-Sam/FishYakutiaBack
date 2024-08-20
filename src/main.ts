@@ -15,7 +15,7 @@ async function bootstrap() {
     origin: [
       process.env.CLIENT_URL,
       'http://127.0.0.1:5173',
-      'https://fishka-admin.netlify.app',
+      'https://master--fishka-admin.netlify.app/',
     ],
     credentials: true,
   });
