@@ -12,7 +12,11 @@ async function bootstrap() {
   app.use('/uploads', express.static(join(process.cwd(), 'uploads')));
 
   app.enableCors({
-    origin: [process.env.CLIENT_URL, 'http://127.0.0.1:5173'],
+    origin: [
+      process.env.CLIENT_URL,
+      'http://127.0.0.1:5173',
+      'https://fishka-admin.netlify.app',
+    ],
     credentials: true,
   });
 
