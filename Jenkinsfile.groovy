@@ -14,17 +14,17 @@ pipeline {
         stage('Checkout') {
             steps {
                 checkout scmGit(
-                                branches: [[name: 'devops']],
+                                branches: [[name: 'main']],
                                 userRemoteConfigs: [[credentialsId:'GIT_TOKEN',
                                 url: 'https://github.com/Kitty-Sam/FishYakutiaBack.git']])
             }
         }
 
-        stage('Build and start backend with db') { 
-            steps {
-                 sh 'docker compose up'    
-             }
-         }
+        // stage('Build and start backend with db') { 
+        //     steps {
+        //          sh 'docker compose up -d'    
+        //      }
+        //  }
 
         // stage('Push image webpage') {
         //     steps {
