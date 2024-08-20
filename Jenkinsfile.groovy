@@ -28,7 +28,7 @@ pipeline {
 
         stage('Delete web app') { 
              steps {
-                  sh 'docker rmi fishyakutiaback-backend'    
+                  sh 'docker rmi fishyakutiabackkitty-backend:latest'    
               }
          }
 
