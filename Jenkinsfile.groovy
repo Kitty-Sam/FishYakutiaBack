@@ -27,11 +27,11 @@ pipeline {
               }
          }
 
-        stage('Delete web app') { 
-             steps {
-                  sh 'docker rmi fishyakutiabackkitty-backend:latest'    
-              }
-         }
+        // stage('Delete web app') { 
+        //      steps {
+        //           sh 'docker rmi fishyakutiabackkitty-backend:latest'    
+        //       }
+        //  }
 
         stage('Start web app') { 
              steps {
