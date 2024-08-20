@@ -35,7 +35,7 @@ pipeline {
 
         stage('Start web app') { 
              steps {
-                  sh 'docker compose --env-file ${ENV} up  -d'    
+                  sh 'docker compose --env-file ${ENV} up -d'    
               }
          }
         // stage('Push image webpage') {
