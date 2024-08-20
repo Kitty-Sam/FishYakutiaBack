@@ -34,7 +34,7 @@ pipeline {
 
         stage('Start web app') { 
              steps {
-                  sh 'docker compose up'    
+                  sh 'docker compose up -d'    
               }
          }
         // stage('Push image webpage') {
