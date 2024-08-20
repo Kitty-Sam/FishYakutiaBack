@@ -8,8 +8,8 @@ services:
     image: postgres:latest  # Use the latest PostgreSQL image from Docker Hub
     container_name: fydb
     restart: always
-    env_file:
-      - path: ./backend.env
+    # env_file:
+    #   - path: ./backend.env
     volumes:
       - fydb:/var/lib/postgresql/data
     ports:
@@ -25,9 +25,9 @@ services:
     #   - database  # Ensure that the backend service starts after the database service is up and running
     ports:
       - 3000:3000  # Forward the container's port 3000 to the host machine's port 3000 for accessing the backend service
-    env_file:
-      - path: ./backend.env
-        # Load environment variables from the .env file in the current directory
+    # env_file:
+    #   - path: ./backend.env
+    #     # Load environment variables from the .env file in the current directory
   
 volumes:
   fydb:
