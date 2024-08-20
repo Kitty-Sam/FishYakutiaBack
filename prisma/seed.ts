@@ -78,5 +78,5 @@ function seedFoods() {
 
 // seedCategories();
 // seedSettings();
-// seedUsers();
-seedFoods();
+seedUsers();
+// seedFoods();

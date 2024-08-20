@@ -1,12 +1,14 @@
 services:
   postgres:
-    container_name: fish_container
-    image: postgres:latest
+    container_name: fish_jb_container
+    image: postgres:16
     environment:
       POSTGRES_DB: 'fish'
       POSTGRES_USER: 'postgres'
       POSTGRES_PASSWORD: 'postgres'
       TZ: 'GMT+3'
       PGTZ: 'GMT+3'
+    volumes:
+      - ./pgdb:/var/lib/postgresql/data
     ports:
       - '5432:5432'
