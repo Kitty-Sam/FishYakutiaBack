@@ -1,11 +1,11 @@
 pipeline {
 
     agent { 
-            label 'JenkinsNode1'
+            label 'Server'
           }
 
     environment {
-        GIT_TOKEN = credentials('TokenSam')
+        GIT_TOKEN = credentials('GIT_TOKEN')
         DOCKERHUB_CREDENTIALS = credentials('kirilljbee_dockerhub')
         NAME_IMAGE = 'kirilljbee/FishYakutiaBack:latest'
     }
@@ -14,17 +14,17 @@ pipeline {
         stage('Checkout') {
             steps {
                 checkout scmGit(
-                                branches: [[name: 'master']],
-                                userRemoteConfigs: [[credentialsId:'TokenSam',
+                                branches: [[name: 'main']],
+                                userRemoteConfigs: [[credentialsId:'GIT_TOKEN',
                                 url: 'https://github.com/Kitty-Sam/FishYakutiaBack.git']])
             }
         }
 
-        // stage('Build image webpage') { 
+        // stage('Build and start backend with db') { 
         //     steps {
-        //         sh 'docker build -t ${NAME_IMAGE} .'    
-        //     }
-        // }
+        //          sh 'docker compose up -d'    
+        //      }
+        //  }
 
         // stage('Push image webpage') {
         //     steps {
