@@ -23,7 +23,7 @@ pipeline {
 
         stage('Stop web app') { 
              steps {
-                  sh 'docker compose down'    
+                  sh 'docker compose --env-file ${ENV} down'    
               }
          }
 
