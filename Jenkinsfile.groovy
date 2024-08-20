@@ -20,12 +20,23 @@ pipeline {
             }
         }
 
-        // stage('Build and start backend with db') { 
-        //     steps {
-        //          sh 'docker compose up -d'    
-        //      }
-        //  }
+        stage('Stop web app') { 
+             steps {
+                  sh 'docker compose down'    
+              }
+         }
 
+        stage('Delete web app') { 
+             steps {
+                  sh 'docker rmi fishyakutiaback-backend'    
+              }
+         }
+
+        stage('Start web app') { 
+             steps {
+                  sh 'docker compose up'    
+              }
+         }
         // stage('Push image webpage') {
         //     steps {
         //         sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
