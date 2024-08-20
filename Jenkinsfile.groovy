@@ -1,6 +1,6 @@
 pipeline {
 
-    agent { 
+    agent {
             label 'Server'
           }
 
@@ -21,21 +21,21 @@ pipeline {
             }
         }
 
-        stage('Stop web app') { 
+        stage('Stop web server') {
              steps {
-                  sh 'docker compose --env-file ${ENV} down'    
+                  sh 'docker compose --env-file ${ENV} down'
               }
          }
 
-        stage('Delete web app') { 
+        stage('Delete web server') {
              steps {
-                  sh 'docker rmi fishyakutiabackkitty-backend:latest'    
+                  sh 'docker rmi fishyakutiabackkitty-backend:latest'
               }
          }
 
-        stage('Start web app') { 
+        stage('Start web server') {
              steps {
-                  sh 'docker compose --env-file ${ENV} up -d'    
+                  sh 'docker compose --env-file ${ENV} up -d'
               }
          }
         // stage('Push image webpage') {
@@ -49,7 +49,7 @@ pipeline {
         // stage('Terraform init') {
         //     steps {
         //         sh 'terraform init'
-        //     }  
+        //     }
         // }
 
         // stage('Terraform plan') {
@@ -75,31 +75,31 @@ pipeline {
         //                 ]) {
         //                 sh 'ansible-playbook -i dynamic_inventory.ini --vault-password-file $ANSIBLE_VAULT_KEY playbook.yml'
         //             }
-        //         }         
+        //         }
         //     }
         // }
     }
 
-        
 
-    // post { 
+
+    // post {
 
     //     success {
     //         mail to: 'jbeework@gmail.com',
     //         subject: "Job '${JOB_NAME}' (${BUILD_NUMBER}) was successfully completed!",
-    //         body: "Please go to ${BUILD_URL} and verify the build"      
+    //         body: "Please go to ${BUILD_URL} and verify the build"
     //     }
 
     //     failure {
     //         mail to: 'jbeework@gmail.com',
     //         subject: "Job '${JOB_NAME}' (${BUILD_NUMBER}) ended unsuccessfully!",
-    //         body: "Please go to ${BUILD_URL} and verify the build"              
+    //         body: "Please go to ${BUILD_URL} and verify the build"
     //     }
 
     //     aborted {
     //         mail to: 'jbeework@gmail.com',
     //         subject: "Job '${JOB_NAME}' (${BUILD_NUMBER}) was aborted",
-    //         body: "Please go to ${BUILD_URL} and verify the build" 
+    //         body: "Please go to ${BUILD_URL} and verify the build"
     //     }
     // }
 }
