@@ -8,6 +8,7 @@ pipeline {
         GIT_TOKEN = credentials('GIT_TOKEN')
         DOCKERHUB_CREDENTIALS = credentials('kirilljbee_dockerhub')
         NAME_IMAGE = 'kirilljbee/FishYakutiaBack:latest'
+        ENV = credentials('backend.env')
     }
 
     stages {
@@ -34,7 +35,7 @@ pipeline {
 
         stage('Start web app') { 
              steps {
-                  sh 'docker compose up -d'    
+                  sh 'docker compose up --env-file ${ENV} -d'    
               }
          }
         // stage('Push image webpage') {
