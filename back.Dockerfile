@@ -17,7 +17,7 @@ COPY ./back .
 # Generate Prisma Client code
 RUN npx prisma generate
 
-EXPOSE 3000
+EXPOSE 3000:3001
 
 # Command to run the app
 CMD [  "npm", "run", "start:migrate:prod" ]

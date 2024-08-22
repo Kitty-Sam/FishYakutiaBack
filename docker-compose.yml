@@ -9,7 +9,7 @@ services:
       dockerfile: front.Dockerfile
     restart: always
     ports:
-      - 5052:3000  # Forward the container's port 3000 to the host machine's port 3000 for accessing the backend service
+      - 5050:3000  # Forward the container's port 3000 to the host machine's port 3000 for accessing the backend service
     environment:
       - VITE_BASE_URL=${VITE_BASE_URL}
 
@@ -37,7 +37,7 @@ services:
     # depends_on:
     #   - database  # Ensure that the backend service starts after the database service is up and running
     ports:
-      - 4000:3000  # Forward the container's port 3000 to the host machine's port 3000 for accessing the backend service
+      - 4000:4000  # Forward the container's port 3000 to the host machine's port 3000 for accessing the backend service
     environment:
       - DATABASE_URL=${DATABASE_URL}
   
