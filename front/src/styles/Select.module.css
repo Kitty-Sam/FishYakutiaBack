@@ -1,0 +1,56 @@
+@import "colors.css";
+
+.select {
+    margin-top: 10px;
+    height: 40px;
+    width: 100%;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    padding-left: 12px;
+    border: none;
+    border-radius: 4px;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    background-size: .6em;
+    background: var(--input-background) url("data:image/svg+xml,%3Csvg width='12' height='8' viewBox='0 0 12 8' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0.353553 2.05848C0.158291 1.86321 0.158291 1.54663 0.353553 1.35137L1.05683 0.64809C1.25194 0.452978 1.56823 0.452806 1.76355 0.647705L5.64683 4.52252C5.84201 4.71727 6.15799 4.71727 6.35317 4.52252L10.2364 0.647705C10.4318 0.452806 10.7481 0.452979 10.9432 0.64809L11.6464 1.35137C11.8417 1.54663 11.8417 1.86321 11.6464 2.05848L6.35355 7.35137C6.15829 7.54663 5.84171 7.54663 5.64645 7.35137L0.353553 2.05848Z' fill='black' fill-opacity='0.24'/%3E%3C/svg%3E") no-repeat calc(100% - 1.3em) center;
+    position: relative;
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--producttitle-color)
+}
+
+.optionsList {
+    position: absolute;
+    top: 44px;
+    width: 100%;
+    right: 0;
+    background: var(--primary-white-color);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    border-radius: 4px;
+    z-index: 10;
+}
+
+.defaultOption {
+    cursor: pointer;
+}
+
+.selectedOption {
+    height: 36px;
+    padding-top: 20px;
+    cursor: pointer;
+}
+
+.option {
+    margin-top: 5px;
+    height: 36px;
+    padding-left: 12px;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+.option:hover {
+    color: #A6A6A6;
+}

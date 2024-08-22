@@ -1,0 +1,30 @@
+@import "colors.css";
+
+.buttonsBlock {
+    margin-top: 20px;
+}
+
+.categoriesTitle {
+    color: var(--orderdate-color);
+    font-size: 20px;
+    font-weight: 500;
+}
+
+.editBlock {
+    margin-top: 20px;
+    display: flex;
+    align-items: center;
+}
+
+.editBtn {
+    margin-left: 20px;
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: var(--category-background);
+    border: none;
+    cursor: pointer;
+}

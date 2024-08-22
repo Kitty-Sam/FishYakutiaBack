@@ -1,0 +1,39 @@
+@import "colors.css";
+
+.productBlock {
+    margin-top: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: var(--producttitle-color);
+    font-size: 12px;
+    font-weight: 500;
+}
+
+.nameProductBlock {
+    width: 45%;
+    display: flex;
+    align-items: center;
+}
+
+.nameProductBlock input {
+    margin-right: 13px;
+}
+
+.categoryProductBlock {
+    width: 30%;
+    display: flex;
+    align-items: center;
+}
+
+.priceProductBlock {
+    width: 5%;
+    display: flex;
+    align-items: center;
+}
+
+.editBlock {
+    width: 20%;
+    display: flex;
+    align-items: center;
+}

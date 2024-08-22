@@ -1,0 +1,155 @@
+@import "colors.css";
+
+.drawer {
+    position: absolute;
+    width: 100%;
+    min-height: 100vh;
+    top: 0;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    background: var(--drawer-color);
+}
+
+.mainBlock {
+    margin-top: 180px;
+    height: max-content;
+    width: 632px;
+    padding: 20px;
+    border-radius: 20px;
+    background: var(--primary-white-color);
+}
+
+.headerBlock {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.title {
+    color: var(--modaltitle-color);
+    font-size: 20px;
+    font-weight: 500;
+}
+
+.input {
+    margin-top: 10px;
+    width: 100%;
+    height: 40px;
+    padding: 12px 10px;
+    border-radius: 5px;
+    box-sizing: border-box;
+    border: none;
+    background: var(--input-background);
+}
+
+.addCategoryInputBlock {
+    display: flex;
+    flex-direction: column;
+}
+
+.addCategoryInputBlock {
+    display: flex;
+    flex-direction: column;
+}
+
+.addCategoryInput {
+    width: 360px;
+}
+
+.editCategoryInputBlock {
+    width: 90%;
+    margin-top: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.editCategoryInput {
+    width: 360px;
+}
+
+.editAndDeleteBtnsBlock{
+    margin-top: 10px;
+    display: flex;
+}
+
+.switcherBlock {
+    margin-top: 12px;
+}
+
+.addProductInputBlock {
+    margin-top: 20px;
+    width: 360px;
+}
+
+.addProductInputPriceBlock {
+    width: 360px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.addProductNameInput {
+    width: 360px;
+}
+
+.inputPriceBlock {
+    width: 150px;
+}
+
+.selectPriceBlock {
+    width: 150px;
+}
+
+.addPhotoBlock {
+    margin-top: 20px;
+}
+
+.addPhotoInputBlock {
+    margin-top: 10px;
+    display: flex;
+    align-items: center;
+}
+
+.addPhotoInput {
+    margin-left: 20px;
+}
+
+.addPhotoInput span {
+    position: relative;
+    cursor: pointer;
+    outline: none;
+    text-decoration: none;
+    color: var(--orderprice-color);
+    font-size: 15px;
+    vertical-align: middle;
+    text-align: center;
+    line-height: 22px;
+    height: 40px;
+    padding: 10px 20px;
+    box-sizing: border-box;
+    border: 1px solid rgba(3, 2, 41, 0.20);
+    border-radius: 5px;
+    margin: 0;
+}
+
+.addPhotoInput input[type=file] {
+    position: absolute;
+    z-index: -1;
+    opacity: 0;
+    display: block;
+    width: 0;
+    height: 0;
+}
+
+.productPhoto {
+    width: 120px;
+    height: 120px;
+    border-radius: 5px;
+    background: var(--category-background);
+}
+
+.errorMessage {
+    margin-top: 5px;
+    color: var(--primary-red-color)
+}

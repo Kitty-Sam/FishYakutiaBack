@@ -1,0 +1,46 @@
+@import "colors.css";
+
+.formBlock {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.input {
+    width: 290px;
+    height: 36px;
+    padding: 0 10px;
+    margin-bottom: 20px;
+    background: var(--primary-white-color);
+    border-radius: 5px;
+    border: none;
+    box-sizing: border-box;
+}
+
+.loginBtn {
+    width: max-content;
+    padding: 10px 62px;
+    background: var(--loginpage-background-color);
+    border-radius: 5px;
+    border: none;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 20px;
+    letter-spacing: 0.05em;
+    color: var(--primary-white-color);
+}
+
+.title {
+    font-style: normal;
+    font-weight: 500;
+    font-size: 24px;
+    line-height: 29px;
+    color: var(--secondary-black-color);
+}
+
+.errorMessage {
+    margin-top: 10px;
+    font-weight: 500;
+    line-height: 29px;
+    color: var(--primary-red-color);
+}

@@ -1,0 +1,60 @@
+@import "colors.css";
+
+.paginationBlock {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.item {
+    align-items: center;
+    color: var(--primary-black-color);
+    cursor: pointer;
+    display: flex;
+    font-size: 14px;
+    font-weight: 500;
+    height: 40px;
+    justify-content: center;
+    width: 40px;
+}
+
+.disabledPage {
+    color: var(--primary-gray-color);
+}
+
+.active {
+    border: solid 1px var(--primary-gray-color);
+    border-radius: 40px;
+    color: var(--primary-gray-color);
+}
+
+.next {
+    border-left: solid 1px var(--primary-gray-color);
+    font-size: 14px;
+    font-weight: 500;
+    height: 60px;
+    position: absolute;
+    right: 0;
+    width: 150px;
+}
+
+.pagination {
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+    height: 60px;
+    justify-content: center;
+    list-style-type: none;
+    position: relative;
+    width: 1000px;
+}
+
+.previous {
+    border-right: solid 1px var(--primary-gray-color);
+    font-size: 14px;
+    font-weight: 500;
+    height: 60px;
+    left: 0;
+    position: absolute;
+    width: 150px;
+}

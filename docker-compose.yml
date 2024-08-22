@@ -2,6 +2,16 @@
 
 # Define services
 services:
+  front:
+    container_name: fyfront
+    build:       # Build the Docker image using the Dockerfile in the current directory
+      context: .
+      dockerfile: front.Dockerfile
+    restart: always
+    ports:
+      - 5052:3000  # Forward the container's port 3000 to the host machine's port 3000 for accessing the backend service
+    environment:
+      - VITE_BASE_URL=${VITE_BASE_URL}
 
   #Database service using PostgreSQL image
   database:
@@ -22,11 +32,12 @@ services:
     container_name: fyback
     build:       # Build the Docker image using the Dockerfile in the current directory
       context: .
+      dockerfile: back.Dockerfile
     restart: always
     # depends_on:
     #   - database  # Ensure that the backend service starts after the database service is up and running
     ports:
-      - 3000:3000  # Forward the container's port 3000 to the host machine's port 3000 for accessing the backend service
+      - 4000:3000  # Forward the container's port 3000 to the host machine's port 3000 for accessing the backend service
     environment:
       - DATABASE_URL=${DATABASE_URL}
   
