@@ -1,7 +1,7 @@
 pipeline {
 
     agent {
-            label 'Server'
+            label 'ProdYF'
           }
 
     environment {
@@ -21,24 +21,24 @@ pipeline {
             }
         }
 
-        stage('Stop web server') {
-             steps {
-                  sh 'docker compose --env-file ${ENV} down'
-              }
-         }
+        // stage('Stop web server') {
+        //      steps {
+        //           sh 'docker compose --env-file ${ENV} down'
+        //       }
+        //  }
 
-        stage('Delete web server') {
-             steps {
-                  sh 'docker rmi fishyakutiabackkitty-backend:latest'
+        // stage('Delete web server') {
+        //      steps {
+        //           sh 'docker rmi fishyakutiabackkitty-backend:latest'
                   
-              }
-         }
+        //       }
+        //  }
 
-        stage('Start web server') {
-             steps {
-                  sh 'docker compose --env-file ${ENV} up -d'
-              }
-         }
+        // stage('Start web server') {
+        //      steps {
+        //           sh 'docker compose --env-file ${ENV} up -d'
+        //       }
+        //  }
         // stage('Push image webpage') {
         //     steps {
         //         sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
