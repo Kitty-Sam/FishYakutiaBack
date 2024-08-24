@@ -14,8 +14,8 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                // Clean before build
-                cleanWs()
+                // // Clean before build
+                // cleanWs()
                 // Checkout from SCM
                 checkout scmGit(
                                 branches: [[name: 'devops']],
@@ -32,8 +32,8 @@ pipeline {
 
         stage('Delete web server') {
              steps {
-                  sh 'docker rmi fishyakutiabackkitty-backend:latest'
                   sh 'docker rmi fishyakutiabackkitty-front:latest'
+                  sh 'docker rmi fishyakutiabackkitty-backend:latest'
                   
               }
          }
@@ -89,17 +89,17 @@ pipeline {
         // }
     }
 
-post {
-        // Clean after build
-        always {
-            cleanWs(cleanWhenNotBuilt: false,
-                    deleteDirs: true,
-                    disableDeferredWipeout: true,
-                    notFailBuild: true,
-                    patterns: [[pattern: '.gitignore', type: 'INCLUDE'],
-                               [pattern: '.propsfile', type: 'EXCLUDE']])
-        }
-    }
+// post {
+//         // Clean after build
+//         always {
+//             cleanWs(cleanWhenNotBuilt: false,
+//                     deleteDirs: true,
+//                     disableDeferredWipeout: true,
+//                     notFailBuild: true,
+//                     patterns: [[pattern: '.gitignore', type: 'INCLUDE'],
+//                                [pattern: '.propsfile', type: 'EXCLUDE']])
+//         }
+//     }
 
     // post {
 
