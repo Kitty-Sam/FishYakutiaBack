@@ -14,6 +14,9 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
+                // Clean before build
+                cleanWs()
+                // Checkout from SCM
                 checkout scmGit(
                                 branches: [[name: 'devops']],
                                 userRemoteConfigs: [[credentialsId:'GIT_TOKEN',
@@ -41,12 +44,17 @@ pipeline {
               }
          }
 
-        stage('Clean workspace') {
-             cleanWs()
-                    dir("${env.WORKSPACE}@tmp") {
-                        deleteDir()
-                    }
+        post {
+        // Clean after build
+        always {
+            cleanWs(cleanWhenNotBuilt: false,
+                    deleteDirs: true,
+                    disableDeferredWipeout: true,
+                    notFailBuild: true,
+                    patterns: [[pattern: '.gitignore', type: 'INCLUDE'],
+                               [pattern: '.propsfile', type: 'EXCLUDE']])
         }
+    }
 
 
         // stage('Push image webpage') {
