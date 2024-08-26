@@ -8,3 +8,4 @@ npm-debug.log
 *.aws
 Jenkinsfile.groovy
 .dockerignore
+*.yml
