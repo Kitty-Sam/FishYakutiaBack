@@ -16,20 +16,35 @@ services:
       - fydb:/var/lib/postgresql/data
     ports:
       - 5432:5432  # Forward the container's port 5432 to the host machine's port 5432 for accessing PostgreSQL
+    networks:
+      fynetwork:
+        ipv4_address: 172.15.0.3
 
     # Backend service inlude Nest and Prisma
   backend:
     container_name: fyback
     build:       # Build the Docker image using the Dockerfile in the current directory
       context: .
+      dockerfile: back.Dockerfile
     restart: always
     # depends_on:
     #   - database  # Ensure that the backend service starts after the database service is up and running
     ports:
-      - 3000:3000  # Forward the container's port 3000 to the host machine's port 3000 for accessing the backend service
+      - 4000:4000  # Forward the container's port 4000 to the host machine's port 4000 for accessing the backend service
+    networks:
+      fynetwork:
+        ipv4_address: 172.15.0.4
     environment:
       - DATABASE_URL=${DATABASE_URL}
   
 volumes:
   fydb:
     external: true
+
+networks:
+    fynetwork:
+      driver: bridge
+      ipam:
+        driver: default
+        config:
+          - subnet: "172.15.0.0/28"

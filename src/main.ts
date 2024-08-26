@@ -15,7 +15,7 @@ async function bootstrap() {
     origin: [
       process.env.CLIENT_URL,
       'http://127.0.0.1:5173',
-      'https://fishka-admin.netlify.app',
+      'https://www.fishka-sale.website/',
     ],
     credentials: true,
   });
@@ -23,6 +23,6 @@ async function bootstrap() {
   const prismaService = app.get(PrismaService);
   await prismaService.enableShutdownHooks(app);
 
-  await app.listen(3000);
+  await app.listen(4000);
 }
 bootstrap();
