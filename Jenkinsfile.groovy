@@ -7,7 +7,7 @@ pipeline {
     environment {
         GIT_TOKEN = credentials('GIT_TOKEN')
         DOCKERHUB_CREDENTIALS = credentials('kirilljbee_dockerhub')
-        ENV = credentials('FISH.env')
+        ENV = credentials('BACK.ENV')
     }
 
     stages {
