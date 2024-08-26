@@ -20,34 +20,34 @@ pipeline {
             }
         }
 
-        // stage('Stop API server') {
-        //      steps {
-        //           sh 'docker compose --env-file ${ENV} down'
-        //       }
-        //  }
+        stage('Stop API server') {
+             steps {
+                  sh 'docker compose --env-file ${ENV} down'
+              }
+         }
 
-        // stage('Delete API server') {
-        //      steps {
-        //           sh 'docker rmi fishyakutiabackkitty-backend:latest'
+        stage('Delete API server') {
+             steps {
+                  sh 'docker rmi fy_back-backend:latest'
                   
-        //       }
-        //  }
+              }
+         }
 
-        // stage('Start API server') {
-        //      steps {
-        //           sh 'docker compose --env-file ${ENV} up -d'
-        //       }
-        //  }
+        stage('Start new API server') {
+             steps {
+                  sh 'docker compose --env-file ${ENV} up -d'
+              }
+         }
 
     }
 
-    // post {
-    //     always {
-    //         cleanWs()
-    //           dir("${env.WORKSPACE}@tmp") {
-    //                       deleteDir()
-    //           }
-    //     }
-    // }
+    post {
+        always {
+            cleanWs()
+              dir("${env.WORKSPACE}@tmp") {
+                          deleteDir()
+              }
+        }
+    }
   
 }
