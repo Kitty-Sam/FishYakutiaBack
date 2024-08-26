@@ -14,7 +14,7 @@ pipeline {
         stage('Checkout') {
             steps {
                 checkout scmGit(
-                                branches: [[name: 'devops']],
+                                branches: [[name: 'master']],
                                 userRemoteConfigs: [[credentialsId:'GIT_TOKEN',
                                 url: 'https://github.com/Kitty-Sam/FishYakutiaBack.git']])
             }
