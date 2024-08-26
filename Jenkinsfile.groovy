@@ -41,13 +41,13 @@ pipeline {
 
     }
 
-    // post {
-    //     always {
-    //         cleanWs()
-    //           dir("${env.WORKSPACE}@tmp") {
-    //                       deleteDir()
-    //           }
-    //     }
-    // }
+    post {
+        always {
+            cleanWs()
+              dir("${env.WORKSPACE}@tmp") {
+                          deleteDir()
+              }
+        }
+    }
   
 }

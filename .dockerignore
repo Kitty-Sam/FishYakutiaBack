@@ -4,7 +4,7 @@
 npm-debug.log
 .coverage
 .coverage.*
-*.env
-*.aws
-Jenkinsfile.groovy
-.dockerignore
+.aws
+Dockerfile
+*.yml
+*.gitignore
