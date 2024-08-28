@@ -23,16 +23,15 @@ jobs:
       with:
         token: ${{ secrets.GIT_TOKEN }}  # Используем секрет GIT_TOKEN для аутентификации
         repository: Kitty-Sam/FishYakutiaBack
-
         ref: master
         
     - name: Stop backend
       run: docker compose down  # Остановка контейнеров Docker
 
-    - name: Remove admin image
+    - name: Remove backend image
       run: docker rmi fy_backend:latest || true  # Удаление Docker об
 
-    - name: Start admin page
+    - name: Start backend
       run: docker compose up -d  # Запуск контейнеров Docker
     
     - name: Clean workspace
