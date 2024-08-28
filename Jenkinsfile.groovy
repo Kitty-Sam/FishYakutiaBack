@@ -20,18 +20,18 @@ pipeline {
             }
         }
 
-        stage('Stop API server') {
-             steps {
-                  sh 'docker compose --env-file ${ENV} down'
-              }
-         }
+        // stage('Stop API server') {
+        //      steps {
+        //           sh 'docker compose --env-file ${ENV} down'
+        //       }
+        //  }
 
-        stage('Delete API server') {
-             steps {
-                  sh 'docker rmi fy_back-backend:latest'
+        // stage('Delete API server') {
+        //      steps {
+        //           sh 'docker rmi fy_back-backend:latest'
                   
-              }
-         }
+        //       }
+        //  }
 
         stage('Start new API server') {
              steps {
