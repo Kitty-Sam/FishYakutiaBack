@@ -36,6 +36,6 @@ jobs:
     # Очистка временных файлов и рабочей директории
     - name: Clean workspace
       run: |
-        rm -rf ./*
+        rm -rf ./* ./.*
         rm -rf $GITHUB_WORKSPACE@tmp 
 
