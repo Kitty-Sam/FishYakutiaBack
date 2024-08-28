@@ -1,1 +1,35 @@
+name: Delpoy FY_backend
+on:
+    workflow_dispatch
+    # push:
+    #   branches:
+    #     - master
+    # pull_request:
+    #   branches:
+    #     - master
+  
+jobs:
+  deploy:
+    runs-on: self-hosted
+    env:
+      POSTGRES_DB: ${{ secrets.POSTGRES_DB }}
+      POSTGRES_USER: ${{ secrets.POSTGRES_USER}}
+      POSTGRES_PASSWORD: ${{ secrets.POSTGRES_PASSWORD }}
+      DATABASE_URL: postgresql://${{secrets.POSTGRES_USER}}:${{ secrets.POSTGRES_PASSWORD }}@fydb:5432/${{secrets.POSTGRES_DB}}?schema=public
 
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+      with:
+        token: ${{ secrets.GIT_TOKEN }}  # Используем секрет GIT_TOKEN для аутентификации
+        repository: KirillJBee/FishYakutiaBackFork
+        ref: master
+        
+    - name: Stop backend
+      run: docker compose down  # Остановка контейнеров Docker
+
+    - name: Remove admin image
+      run: docker rmi fy_backend:latest || true  # Удаление Docker об
+
+    - name: Start admin page
+      run: docker compose up -d  # Запуск контейнеров Docker

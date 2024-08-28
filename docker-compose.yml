@@ -23,12 +23,13 @@ services:
     # Backend service inlude Nest and Prisma
   backend:
     container_name: fyback
+    image: fy_backend
     build:       # Build the Docker image using the Dockerfile in the current directory
       context: .
       dockerfile: Dockerfile
     restart: always
-    # depends_on:
-    #   - database  # Ensure that the backend service starts after the database service is up and running
+    depends_on:
+    - database  # Ensure that the backend service starts after the database service is up and running
     ports:
       - 4000:4000  # Forward the container's port 4000 to the host machine's port 4000 for accessing the backend service
     networks:
