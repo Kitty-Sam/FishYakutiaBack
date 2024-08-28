@@ -1,12 +1,12 @@
 name: Delpoy FY_backend
+
 on:
-    workflow_dispatch
-    # push:
-    #   branches:
-    #     - master
-    # pull_request:
-    #   branches:
-    #     - master
+    push:
+      branches:
+        - master
+    pull_request:
+      branches:
+        - master
   
 jobs:
   deploy:
@@ -33,9 +33,9 @@ jobs:
 
     - name: Start admin page
       run: docker compose up -d  # Запуск контейнеров Docker
-    # Очистка временных файлов и рабочей директории
+    
     - name: Clean workspace
+      continue-on-error: true
       run: |
-        rm -rf ./* ./.*
+        rm -rf ./* ./.* 
         rm -rf $GITHUB_WORKSPACE@tmp 
-
