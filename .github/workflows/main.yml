@@ -22,7 +22,7 @@ jobs:
       uses: actions/checkout@v3
       with:
         token: ${{ secrets.GIT_TOKEN }}  # Используем секрет GIT_TOKEN для аутентификации
-        repository: https://github.com/Kitty-Sam/FishYakutiaBack.git
+        repository: Kitty-Sam/FishYakutiaBack
 
         ref: master
         
