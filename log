@@ -1,0 +1,123 @@
+#0 building with "default" instance using docker driver
+
+#1 [backend internal] load build definition from Dockerfile
+#1 transferring dockerfile: 443B done
+#1 DONE 0.0s
+
+#2 [backend internal] load metadata for docker.io/library/node:latest
+#2 DONE 1.7s
+
+#3 [backend internal] load .dockerignore
+#3 transferring context: 140B done
+#3 DONE 0.0s
+
+#4 [backend 1/7] FROM docker.io/library/node:latest@sha256:8ec02324cb37718197de92e51677781be9f1345c709f31a1f44440c6036d24a2
+#4 DONE 0.0s
+
+#5 [backend internal] load build context
+#5 transferring context: 4.88kB done
+#5 DONE 0.0s
+
+#6 [backend 2/7] WORKDIR /app
+#6 CACHED
+
+#7 [backend 3/7] COPY package*.json ./
+#7 CACHED
+
+#8 [backend 4/7] RUN npm cache clean --force
+#8 CACHED
+
+#9 [backend 5/7] RUN npm ci
+#9 136.6 
+#9 136.6 added 715 packages, and audited 716 packages in 2m
+#9 136.6 
+#9 136.6 96 packages are looking for funding
+#9 136.6   run `npm fund` for details
+#9 136.6 
+#9 136.6 13 vulnerabilities (10 moderate, 2 high, 1 critical)
+#9 136.6 
+#9 136.6 To address issues that do not require attention, run:
+#9 136.6   npm audit fix
+#9 136.6 
+#9 136.6 To address all issues (including breaking changes), run:
+#9 136.6   npm audit fix --force
+#9 136.6 
+#9 136.6 Run `npm audit` for details.
+#9 DONE 136.6s
+
+#10 [backend 6/7] COPY . .
+#10 DONE 0.1s
+
+#11 [backend 7/7] RUN npx prisma generate
+#11 0.748 Environment variables loaded from .env
+#11 0.750 Prisma schema loaded from prisma/schema.prisma
+#11 12.76 
+#11 12.76 ✔ Generated Prisma Client (4.15.0 | library) to ./node_modules/@prisma/client in 85ms
+#11 12.76 You can now start using Prisma Client in your code. Reference: https://pris.ly/d/client
+#11 12.76 ```
+#11 12.76 import { PrismaClient } from '@prisma/client'
+#11 12.76 const prisma = new PrismaClient()
+#11 12.76 ```
+#11 12.76 
+#11 12.76 warn Versions of prisma@4.16.0 and @prisma/client@4.15.0 don't match.
+#11 12.76 This might lead to unexpected behavior.
+#11 12.76 Please make sure they have the same version.
+#11 DONE 12.8s
+
+#12 [backend] exporting to image
+#12 exporting layers
+#12 exporting layers 1.8s done
+#12 writing image sha256:37b0d83117932f0d098e88176b4d2c268ce596ecf36c960e6eeca6128dd945f2 done
+#12 naming to docker.io/library/fy_backend done
+#12 DONE 1.8s
+
+#13 [backend] resolving provenance for metadata file
+#13 DONE 0.0s
+Attaching to fyback, fydb
+fydb    | 
+fydb    | PostgreSQL Database directory appears to contain a database; Skipping initialization
+fydb    | 
+fyback  | 
+fyback  | > fish-yakutia-back@0.0.1 start:migrate:prod
+fyback  | > prisma migrate deploy && nest start
+fyback  | 
+fyback  | Environment variables loaded from .env
+fyback  | Prisma schema loaded from prisma/schema.prisma
+fyback  | Datasource "db": PostgreSQL database "fish", schema "public" at "fydb:5432"
+fyback  | 
+fyback  | 15 migrations found in prisma/migrations
+fyback  | 
+fyback  | 
+fyback  | No pending migrations to apply.
+fyback  | [32m[Nest] 95  - [39m09/04/2024, 7:11:00 PM [32m    LOG[39m [38;5;3m[NestFactory] [39m[32mStarting Nest application...[39m
+fyback  | [32m[Nest] 95  - [39m09/04/2024, 7:11:00 PM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mMulterModule dependencies initialized[39m[38;5;3m +16ms[39m
+fyback  | [32m[Nest] 95  - [39m09/04/2024, 7:11:00 PM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mAppModule dependencies initialized[39m[38;5;3m +0ms[39m
+fyback  | [32m[Nest] 95  - [39m09/04/2024, 7:11:00 PM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mServeStaticModule dependencies initialized[39m[38;5;3m +1ms[39m
+fyback  | [32m[Nest] 95  - [39m09/04/2024, 7:11:00 PM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mCategoryModule dependencies initialized[39m[38;5;3m +0ms[39m
+fyback  | [32m[Nest] 95  - [39m09/04/2024, 7:11:00 PM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mOrderModule dependencies initialized[39m[38;5;3m +1ms[39m
+fyback  | [32m[Nest] 95  - [39m09/04/2024, 7:11:00 PM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mFoodModule dependencies initialized[39m[38;5;3m +0ms[39m
+fyback  | [32m[Nest] 95  - [39m09/04/2024, 7:11:00 PM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mAuthModule dependencies initialized[39m[38;5;3m +0ms[39m
+fyback  | [32m[Nest] 95  - [39m09/04/2024, 7:11:00 PM [32m    LOG[39m [38;5;3m[RoutesResolver] [39m[32mAppController {/}:[39m[38;5;3m +17ms[39m
+fyback  | [32m[Nest] 95  - [39m09/04/2024, 7:11:00 PM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/, GET} route[39m[38;5;3m +2ms[39m
+fyback  | [32m[Nest] 95  - [39m09/04/2024, 7:11:00 PM [32m    LOG[39m [38;5;3m[RoutesResolver] [39m[32mCategoryController {/}:[39m[38;5;3m +0ms[39m
+fyback  | [32m[Nest] 95  - [39m09/04/2024, 7:11:00 PM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/categories, GET} route[39m[38;5;3m +1ms[39m
+fyback  | [32m[Nest] 95  - [39m09/04/2024, 7:11:00 PM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/add-category, POST} route[39m[38;5;3m +0ms[39m
+fyback  | [32m[Nest] 95  - [39m09/04/2024, 7:11:00 PM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/category/:id, DELETE} route[39m[38;5;3m +0ms[39m
+fyback  | [32m[Nest] 95  - [39m09/04/2024, 7:11:00 PM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/category/:id, PUT} route[39m[38;5;3m +1ms[39m
+fyback  | [32m[Nest] 95  - [39m09/04/2024, 7:11:00 PM [32m    LOG[39m [38;5;3m[RoutesResolver] [39m[32mFoodController {/}:[39m[38;5;3m +0ms[39m
+fyback  | [32m[Nest] 95  - [39m09/04/2024, 7:11:00 PM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/foods, GET} route[39m[38;5;3m +0ms[39m
+fyback  | [32m[Nest] 95  - [39m09/04/2024, 7:11:00 PM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/foods-mobile, GET} route[39m[38;5;3m +1ms[39m
+fyback  | [32m[Nest] 95  - [39m09/04/2024, 7:11:00 PM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/foods, DELETE} route[39m[38;5;3m +0ms[39m
+fyback  | [32m[Nest] 95  - [39m09/04/2024, 7:11:00 PM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/foods/filter-by-category-id, POST} route[39m[38;5;3m +0ms[39m
+fyback  | [32m[Nest] 95  - [39m09/04/2024, 7:11:00 PM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/foods/filter-by-title, POST} route[39m[38;5;3m +0ms[39m
+fyback  | [32m[Nest] 95  - [39m09/04/2024, 7:11:00 PM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/foods/filter-by-title-and-by-category, POST} route[39m[38;5;3m +0ms[39m
+fyback  | [32m[Nest] 95  - [39m09/04/2024, 7:11:00 PM [32m    LOG[39m [38;5;3m[RoutesResolver] [39m[32mOrderController {/}:[39m[38;5;3m +1ms[39m
+fyback  | [32m[Nest] 95  - [39m09/04/2024, 7:11:00 PM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/create-order, POST} route[39m[38;5;3m +0ms[39m
+fyback  | [32m[Nest] 95  - [39m09/04/2024, 7:11:00 PM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/orders, GET} route[39m[38;5;3m +0ms[39m
+fyback  | [32m[Nest] 95  - [39m09/04/2024, 7:11:00 PM [32m    LOG[39m [38;5;3m[RoutesResolver] [39m[32mAuthController {/auth}:[39m[38;5;3m +0ms[39m
+fyback  | [32m[Nest] 95  - [39m09/04/2024, 7:11:00 PM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/auth/me, GET} route[39m[38;5;3m +0ms[39m
+fyback  | [32m[Nest] 95  - [39m09/04/2024, 7:11:00 PM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/auth/login, POST} route[39m[38;5;3m +0ms[39m
+fyback  | [32m[Nest] 95  - [39m09/04/2024, 7:11:00 PM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/auth/logout, POST} route[39m[38;5;3m +0ms[39m
+fyback  | [32m[Nest] 95  - [39m09/04/2024, 7:11:00 PM [32m    LOG[39m [38;5;3m[NestApplication] [39m[32mNest application successfully started[39m[38;5;3m +176ms[39m
+[Kfyback exited with code 1
+[Kfydb exited with code 0
