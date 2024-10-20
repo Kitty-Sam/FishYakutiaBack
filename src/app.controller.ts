@@ -4,6 +4,6 @@ import { Controller, Get } from '@nestjs/common';
 export class AppController {
   @Get()
   getRoot(): string {
-    return 'Hello, Nest.js!';
+    return 'Hello, Fishka!';
   }
 }
